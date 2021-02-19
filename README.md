@@ -1,6 +1,8 @@
 # Warthunder Replay Parser
 Warthunder replay files unfortunately do not seem to contain any easily readable information (like WOT, which includes some JSON). This a very, very basic attempt at parsing Warthunder replay files (.wrpl)
 
+!!! This is still very much WIP and it will not work consistently !!!
+
 ## What can it do?
 So far, it can only the planes involved in a match.
 
