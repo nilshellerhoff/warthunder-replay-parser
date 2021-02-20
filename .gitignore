@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Custom added
+.ipynb
+.wrlp
+canberra_list.txt
+planes.txt
+WarthunderReplays.ipynb
