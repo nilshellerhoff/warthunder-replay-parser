@@ -54,41 +54,35 @@ def _parse_replay(path):
     # allowed letters for plane names
     letters = list(b"abcdefghijklmnopqrstuvwxyz1234567890-_")
 
-    # This is the magic binary sequence which preceeds each plane name 
-    magic_sequence = "01 20 01"
-    sequence = [int(b, 16) for b in magic_sequence.split(" ")]
-
     players = []
-
-    seq_mark = 0
-
-    for i,c in enumerate(repl):
-        # if sequence lenght has been reached, we found something interesting
-        if seq_mark > len(sequence) - 1:
-            seq_mark = 0
-
-            # check if following 5 letters are ascii, if they are, assume plane
-            if all(r in letters for r in repl[i+1:i+5]):
-                plane = ""
-                idx = 1
-                while repl[i+idx] in letters:
-                    plane += chr(repl[i+idx])
-                    idx += 1
-                
-                # player id is two byte before sequnece? -> does not seem to be correct
-                pid = "{:02x}{:02x}".format(repl[i-len(sequence)-1], repl[i-len(sequence)-2])
-                #pid = str(repl[i-len(sequence)-1]) + str(repl[i-len(sequence)-2]) 
-
-                # ignored special cases
-                if plane in ignored_str:
-                    continue
-                
-                players.append((plane, pid))
-
-        # if we found something in the sequence, increase counter by one
-        if c == sequence[seq_mark]:
-            seq_mark += 1
     
+    # magic sequence before plane names
+    p = re.compile(b'\x01\x20\x01')
+    
+    for m in p.finditer(repl):
+        i = m.start()+3
+        
+        
+        if all(r in letters for r in repl[i+1:i+5]):
+            plane = ""
+            idx = 1
+            while repl[i+idx] in letters:
+                plane += chr(repl[i+idx])
+                idx += 1
+
+            # player id is two byte before sequnece? -> does not seem to be correct
+            pid = "{:02x}{:02x}{:02x}".format(*repl[m.start()-5:m.start()-2])
+            #pid = str(repl[i-len(sequence)-1]) + str(repl[i-len(sequence)-2]) 
+
+            #pid = "{:02x}".format(repl[i+idx])
+            #pid = "{:02x}".format(repl[i])
+
+            # ignored special cases
+            if plane in ignored_str:
+                continue
+            
+            players.append((plane, pid))
+
     return players
 
 if __name__ == "__main__":
