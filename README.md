@@ -73,7 +73,7 @@ parsing /path/to/replay/0017.wrpl
 ```
 
 You can also use the script as a module:
-```
+```python
 import parse_replay
 replay_data = parse_replay.parse_replay(replay_folder)
 ```
