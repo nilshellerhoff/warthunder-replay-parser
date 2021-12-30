@@ -128,15 +128,19 @@ def _parse_replay_file(path):
     for m in magic.finditer(replay):
 
         vehicle_name_max_len = 30
-        vehicle = _get_text(replay[m.start() + 4:m.start() + vehicle_name_max_len + 30])
+
+        try:
+            vehicle = _get_text(replay[m.start() + 4:m.start() + vehicle_name_max_len + 30])
         
-        # only if the vehicle name is at least 2 letters, it is actually not garbage
-        if len(vehicle) > 2 and vehicle not in ignored_vehicles:
+            # only if the vehicle name is at least 2 letters, it is actually not garbage
+            if len(vehicle) > 2 and vehicle not in ignored_vehicles:
 
-            # player id can be founx at the position m.start() - 4
-            player_id = replay[m.start() - 4]
+                # player id can be founx at the position m.start() - 4
+                player_id = replay[m.start() - 4]
 
-            players.append({"player_id" : player_id, "vehicle" : vehicle})
+                players.append({"player_id" : player_id, "vehicle" : vehicle})
+        except:
+            pass
     
     return players
 
