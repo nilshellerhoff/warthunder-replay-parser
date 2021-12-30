@@ -28,6 +28,7 @@ def parse_replay(folder):
         })
 
     data = _get_metadata(folder)
+    data['num_players'] = len(players2)
     data['players'] = players2
 
     return data
