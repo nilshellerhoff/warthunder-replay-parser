@@ -9,7 +9,7 @@ It can find some basic data about a match, including map and the vehicles involv
 
 There are two scripts available:
 
-Download a replay from the [Warthunder replay server](https://www.warthunder.com/en/replay/). You need the replay ID, which can be found in the URL (64-bit, either in decimal or hexadecimal notation).
+Download a replay from the [Warthunder replay server](https://warthunder.com/en/tournament/replay/). You need the replay ID, which can be found in the URL (64-bit, either in decimal or hexadecimal notation).
 
 ```
 python download_replay.py <replay_id>
@@ -73,7 +73,7 @@ parsing /path/to/replay/0017.wrpl
 ```
 
 You can also use the script as a module:
-```
+```python
 import parse_replay
 replay_data = parse_replay.parse_replay(replay_folder)
 ```
