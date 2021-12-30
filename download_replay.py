@@ -23,6 +23,8 @@ def downloadReplay(replay_id):
 
         index += 1
 
+    return index
+
 
 def main():
     try:
@@ -41,7 +43,9 @@ def main():
     # convert to hex
     replay_id_hex = "{:016x}".format(replay_id)
 
-    downloadReplay(replay_id_hex)
+    num_parts = downloadReplay(replay_id_hex)
+
+    print(f"downloaded {num_parts}-part replay to {replay_id_hex}")
 
 if __name__ == "__main__":
     main()
