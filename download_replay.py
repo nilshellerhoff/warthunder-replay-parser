@@ -3,10 +3,11 @@ import sys
 import os
 from multiprocessing.pool import ThreadPool
 
+
 # maximum number of files to download at the same time
 MAX_CONCURRENT_DOWNLOADS = 5
 
-def downloadReplay(replay_id):
+def downloadReplay(replay_id, store_path=os.getcwd()):
     # create the folder
     os.mkdir(replay_id)
 
@@ -18,7 +19,8 @@ def downloadReplay(replay_id):
         if r.status_code == 404:
             break
 
-        with open(f'{replay_id}/{index:04d}.wrpl', 'wb') as f:
+        path = os.path.join(f"{store_path}", f"{replay_id}", f"{index:04d}.wrpl")
+        with open(path, 'wb') as f:
             f.write(r.content)
 
         index += 1
