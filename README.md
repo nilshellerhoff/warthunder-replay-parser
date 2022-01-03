@@ -43,45 +43,40 @@ It expects the replay files to be named 0000.wrpl, 0001.wrpl, etc. If a `<replay
 
 The output will be in json form:
 ```
-parsing replay in /path/to/replay
-parsing /path/to/replay/0000.wrpl
-parsing /path/to/replay/0001.wrpl
-parsing /path/to/replay/0002.wrpl
-parsing /path/to/replay/0003.wrpl
-parsing /path/to/replay/0004.wrpl
-parsing /path/to/replay/0005.wrpl
-parsing /path/to/replay/0006.wrpl
-parsing /path/to/replay/0007.wrpl
-parsing /path/to/replay/0008.wrpl
-parsing /path/to/replay/0009.wrpl
-parsing /path/to/replay/0010.wrpl
-parsing /path/to/replay/0011.wrpl
-parsing /path/to/replay/0012.wrpl
-parsing /path/to/replay/0013.wrpl
-parsing /path/to/replay/0014.wrpl
-parsing /path/to/replay/0015.wrpl
-parsing /path/to/replay/0016.wrpl
-parsing /path/to/replay/0017.wrpl
+parsing replay in /path/to/replay/005569aa001501ca
+parsing /path/to/replay/005569aa001501ca/0000.wrpl
+parsing /path/to/replay/005569aa001501ca/0001.wrpl
+parsing /path/to/replay/005569aa001501ca/0002.wrpl
+parsing /path/to/replay/005569aa001501ca/0003.wrpl
+parsing /path/to/replay/005569aa001501ca/0004.wrpl
+parsing /path/to/replay/005569aa001501ca/0005.wrpl
+parsing /path/to/replay/005569aa001501ca/0006.wrpl
+parsing /path/to/replay/005569aa001501ca/0007.wrpl
+parsing /path/to/replay/005569aa001501ca/0008.wrpl
+parsing /path/to/replay/005569aa001501ca/0009.wrpl
 
 {
-    "level": "levels/sicily.bin",
-    "mission_file": "gamedata/missions/cta/planes/historical/bfd/sicily/sicily_bfd_norespawn.blk",
-    "mission_name": "sicily_BfD_norespawn",
+    "level": "levels/avg_normandy.bin",
+    "mission_file": "gamedata/missions/cta/tanks/normandy/normandy_dom.blk",
+    "mission_name": "normandy_Dom",
     "time_of_day": "day",
-    "weather": "cloudy",
-    "time_of_battle_ts": 1640607893,
-    "time_of_battle": "2021-12-27 13:24:53",
+    "weather": "hazy",
+    "time_of_battle_ts": 1641217514,
+    "time_of_battle": "2022-01-03 14:45:14",
+    "num_players": 21,
     "players": [
         {
-            "player_id": 11,
+            "player_id": 34,
             "vehicles": [
-                "f-86a-5"
+                "us_m1a1_abrams",
+                "us_m1a1_hc_abrams"
             ]
         },
         {
-            "player_id": 12,
+            "player_id": 35,
             "vehicles": [
-                "f-84f"
+                "us_m1_ip_abrams",
+                "us_hstv_l"
             ]
         },
         ...
