@@ -3,7 +3,7 @@
 .vscode 
 __pycache__
 .ipynb_checkpoints
-auth_cookie.json
+auth_cookie*
 
 # ignore downloaded replays (16 hex numbers)
 [0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]
