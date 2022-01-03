@@ -16,7 +16,7 @@ where `<num_pages>` is the number of pages to scrape (typically there are 25 rep
 
 Since the page is login protected, this script expects a `auth_cookie.json` file with the cookies for the login:
 
-cookies.json:
+auth_cookie.json:
 ```json
 {
 	"identity_sid" : "..."
