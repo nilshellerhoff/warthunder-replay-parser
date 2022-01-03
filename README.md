@@ -36,7 +36,7 @@ where `<replay_id>` is the replay ID (64-bit, either in decimal or hexadecimal n
 Parse a replay in a folder
 
 ```
-python wtparser.py <replay_folder>
+python parse_replay.py <replay_folder>
 ```
 
 It expects the replay files to be named 0000.wrpl, 0001.wrpl, etc. If a `<replay_folder>` is not given, it will use the current directory.
