@@ -1,6 +1,8 @@
 *.pyc
 *.ipynb
 .vscode 
+__pycache__
+.ipynb_checkpoints
 
 # ignore downloaded replays (16 hex numbers)
 [0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]
