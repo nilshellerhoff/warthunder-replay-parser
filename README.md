@@ -1,28 +1,45 @@
 # Warthunder Replay Parser
 Warthunder replay files unfortunately do not seem to contain any easily readable information (like WOT, which includes some JSON). This a very, very basic attempt at parsing Warthunder replay files (.wrpl). There is [wt-tools](https://github.com/klensy/wt-tools/), which though does not seem to work with (multipart) server replays.
 
-
-## What can it do?
-It can find some basic data about a match, including map and the vehicles involved.
-
 ## How to use it?
 
-There are two scripts available:
+There are three scripts available:
 
-Download a replay from the [Warthunder replay server](https://warthunder.com/en/tournament/replay/). You need the replay ID, which can be found in the URL (64-bit, either in decimal or hexadecimal notation).
+### replays_scraper.py
+**!!!Use at your own risk, scraping (protected) webpages might be against the TOS/law in certain countries!!!**
+
+This script can be used to scrape replays from the https://warthunder.com/en/tournament/replay/ page. Invoke it like this:
+```
+python replays_scraper.py <num_pages>
+```
+where `<num_pages>` is the number of pages to scrape (typically there are 25 replays per page). It will print a JSON object with all the found replays.
+
+Since the page is login protected, this script expects a `auth_cookie.json` file with the cookies for the login:
+
+cookies.json:
+```json
+{
+	"identity_sid" : "..."
+}
+```
+where ... is the value of the `identity_sid` cookie (which you can get by logging in to warthunder.com and reading the cookies in your browser).
+
+### download_replay.py
+Download a replay from the [Warthunder replay server](https://warthunder.com/en/tournament/replay/).
 
 ```
 python download_replay.py <replay_id>
 ```
-This will store the replay files in a folder named <replay_id>.
+where `<replay_id>` is the replay ID (64-bit, either in decimal or hexadecimal notation). This will store the replay files in a folder named named after the replay ID in hex notation.
 
-Then you can parse the replay:
+### parse_replay.py
+Parse a replay in a folder
 
 ```
 python wtparser.py <replay_folder>
 ```
 
-If a replay_folder is not given, it will use the current directory.
+It expects the replay files to be named 0000.wrpl, 0001.wrpl, etc. If a `<replay_folder>` is not given, it will use the current directory.
 
 The output will be in json form:
 ```
