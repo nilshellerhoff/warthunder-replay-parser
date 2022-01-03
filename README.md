@@ -25,7 +25,7 @@ auth_cookie.json:
 where ... is the value of the `identity_sid` cookie (which you can get by logging in to warthunder.com and reading the cookies in your browser).
 
 ### download_replay.py
-Download a replay from the [Warthunder replay server](https://warthunder.com/en/tournament/replay/).
+Download a replay from https://warthunder.com/en/tournament/replay/.
 
 ```
 python download_replay.py <replay_id>
