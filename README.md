@@ -6,7 +6,7 @@ Warthunder replay files unfortunately do not seem to contain any easily readable
 There are three scripts available:
 
 ### replays_scraper.py
-**!!!Use at your own risk, scraping (protected) webpages might be against the TOS/law in certain countries!!!**
+> :warning: **Use at your own risk, scraping (protected) webpages might be against the TOS/law in certain countries**
 
 This script can be used to scrape replays from the https://warthunder.com/en/tournament/replay/ page. Invoke it like this:
 ```
