@@ -84,8 +84,30 @@ parsing /path/to/replay/005569aa001501ca/0009.wrpl
 }
 ```
 
-You can also use the script as a module:
+## Use as module
+You can also use the scripts as a modules
 ```python
+import replays_scraper
+import download_replay
 import parse_replay
-replay_data = parse_replay.parse_replay(replay_folder)
+
+# set the cookies
+cookies = { "identity_sid" : "secret_key" }
+
+# download the html
+pages = replays_scraper.download_pages(1, cookies)
+
+# scrape replay data from html
+replays = []
+for page in pages:
+	replays += replays_scraper.parse_page(page)
+
+# download the files of the last replay
+download_replay.downloadReplay(replays[-1]["id"])
+
+# get the hexadecimal id (= folder name)
+replay_id_hex = download_replay._get_hex_id(replays[-1]["id"])
+
+# parse the replay
+print(parse_replay.parse_replay(replay_id_hex))
 ```
