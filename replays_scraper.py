@@ -67,6 +67,16 @@ def download_pages(num_pages, cookies):
     
     return pages
 
+def scrape_replays(cookies, num_pages=1):
+    pages = download_pages(num_pages, cookies)
+
+    replays = []
+    for page in pages:
+        replays += parse_page(page)
+
+    return replays
+
+
 def main():
     try: 
         num_pages = int(sys.argv[1])
@@ -77,12 +87,8 @@ def main():
     with open("auth_cookie.json") as f:
         cookies = json.load(f)
 
-    pages = download_pages(num_pages, cookies)
-
-    replays = []
-    for page in pages:
-        replays += parse_page(page)
-        
+    replays = scrape_replays(cookies, num_pages=num_pages)
+            
     print(json.dumps(replays, indent=4))
 
 if __name__ == "__main__":
