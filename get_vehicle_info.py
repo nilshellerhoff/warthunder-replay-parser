@@ -8,7 +8,7 @@ def _num_to_int(num):
     get a number in human readable form to int (e.g. "110 100" -> 110100)
     """
 
-    if num == "Free": return 0
+    if num.lower() == "free": return 0
     
     return int(num.replace(" ", ""))
 
