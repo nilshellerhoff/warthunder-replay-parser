@@ -12,6 +12,20 @@ def _num_to_int(num):
     
     return int(num.replace(" ", ""))
 
+def _get_currency(value):
+
+    currencies = {
+        "/images/thumb/5/56/Specs-Card-Activity.png/23px-Specs-Card-Activity.png" : "squadron_points",
+        "/images/thumb/4/4f/Specs-Card-Exp.png/14px-Specs-Card-Exp.png" : "research_points",
+        "/images/c/c1/Specs-Card-Lion.png" : "silver_lions",
+        "/images/f/f6/Specs-Card-Eagle.png" : "golden_eagles",
+    }
+
+    try:
+        return currencies[value.find("a").find("img")["src"]]
+    except:
+        return None
+
 
 def _get_price(soup):
     """
@@ -25,14 +39,6 @@ def _get_price(soup):
     buy_currency = None
     buy_price = None
 
-    currencies = {
-        "/images/thumb/5/56/Specs-Card-Activity.png/23px-Specs-Card-Activity.png" : "squadron_points",
-        "/images/thumb/4/4f/Specs-Card-Exp.png/14px-Specs-Card-Exp.png" : "research_points",
-        "/images/c/c1/Specs-Card-Lion.png" : "silver_lions",
-        "/images/f/f6/Specs-Card-Eagle.png" : "golden_eagles",
-    }
-    get_currency = lambda x: currencies[x.find("a").find("img")["src"]]
-
     buy_info = pricetag.find("div", {"class" : "general_info_price_buy"})
     buy_price_text = buy_info.find("span", {"class", "value"}).text
 
@@ -41,11 +47,11 @@ def _get_price(soup):
         buy_currency = "bundle_gift"
     else:
         buy_price = _num_to_int(buy_price_text)
-        buy_currency = get_currency(buy_info)
+        buy_currency = _get_currency(buy_info)
 
         if research_info := pricetag.find("div", {"class" : "general_info_price_research"}):
             research_price = _num_to_int(research_info.find("span", {"class" : "value"}).text)
-            research_currency = get_currency(research_info)
+            research_currency = _get_currency(research_info)
 
     return {
         "research_currency" : research_currency,
