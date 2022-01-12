@@ -7,7 +7,7 @@ from multiprocessing.pool import ThreadPool
 # maximum number of files to download at the same time
 MAX_CONCURRENT_DOWNLOADS = 5
 
-def downloadReplay(replay_id, store_path=os.getcwd()):
+def download_replay(replay_id, store_path=os.getcwd()):
     """
     download a replay from the replay server given it's id
     """
@@ -60,7 +60,7 @@ def main():
         print("Usage: download_replay.py <replay_id>")
         return
 
-    num_parts = downloadReplay(replay_id)
+    num_parts = download_replay(replay_id)
 
     replay_id_hex = _get_hex_id(replay_id)
 
