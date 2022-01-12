@@ -14,6 +14,7 @@ def _parse_page(page):
         slug = image.split('/')[-1].split('.')[0]
         name = vehicle.find("span", {"class": "tree-item-text-scroll"}).text
         link = vehicle.find("a")["href"]
+        if "http" not in link: link = "https://wiki.warthunder.com" + link
 
         vehicles.append({
             "slug": slug,
