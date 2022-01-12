@@ -25,7 +25,7 @@ auth_cookie.json:
 where ... is the value of the `identity_sid` cookie (which you can get by logging in to warthunder.com and reading the cookies in your browser).
 
 ### download_replay.py
-Download a replay from the [Warthunder replay server](https://warthunder.com/en/tournament/replay/).
+Download a replay from https://warthunder.com/en/tournament/replay/.
 
 ```
 python download_replay.py <replay_id>
@@ -36,7 +36,7 @@ where `<replay_id>` is the replay ID (64-bit, either in decimal or hexadecimal n
 Parse a replay in a folder
 
 ```
-python wtparser.py <replay_folder>
+python parse_replay.py <replay_folder>
 ```
 
 It expects the replay files to be named 0000.wrpl, 0001.wrpl, etc. If a `<replay_folder>` is not given, it will use the current directory.
@@ -84,8 +84,30 @@ parsing /path/to/replay/005569aa001501ca/0009.wrpl
 }
 ```
 
-You can also use the script as a module:
+## Use as module
+You can also use the scripts as a modules
 ```python
+import replays_scraper
+import download_replay
 import parse_replay
-replay_data = parse_replay.parse_replay(replay_folder)
+
+# set the cookies
+cookies = { "identity_sid" : "secret_key" }
+
+# download the html
+pages = replays_scraper.download_pages(1, cookies)
+
+# scrape replay data from html
+replays = []
+for page in pages:
+	replays += replays_scraper.parse_page(page)
+
+# download the files of the last replay
+download_replay.downloadReplay(replays[-1]["id"])
+
+# get the hexadecimal id (= folder name)
+replay_id_hex = download_replay._get_hex_id(replays[-1]["id"])
+
+# parse the replay
+print(parse_replay.parse_replay(replay_id_hex))
 ```
