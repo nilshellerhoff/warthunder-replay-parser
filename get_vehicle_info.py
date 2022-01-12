@@ -107,6 +107,7 @@ def _parse_page(page):
     soup = BeautifulSoup(page, "html.parser")
 
     name = soup.find("div", {"class" : "general_info_name"}).text.strip()
+    name_no_symbols = soup.find("h1", {"id" : "firstHeading"}).text.strip()
     nation = soup.find("div", {"class" : "general_info_nation"}).text.strip()
     rank_text = soup.find("div", {"class" : "general_info_rank"}).text.strip()
     rank = rank_text.split(" ")[0]
@@ -128,6 +129,7 @@ def _parse_page(page):
         
     return {
         "name": name,
+        "name_no_symbols": name_no_symbols,
         "nation": nation,
         "rank_text": rank_text,
         "rank": rank,
