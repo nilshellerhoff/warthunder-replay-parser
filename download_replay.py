@@ -40,6 +40,8 @@ def _get_hex_id(replay_id):
     from a replay id (64-bit int) get the appropriate hex notation (zero-padded 16 char int) regardless of decimal or hex input
     """
 
+    replay_id = str(replay_id)
+
     # replay_id is 64bit int (can be decimal or hex)
     # check length to find out, hex should be 16 chars (64 bit)
     if len(replay_id) == 16:
