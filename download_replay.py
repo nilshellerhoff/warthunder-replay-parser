@@ -7,7 +7,7 @@ from multiprocessing.pool import ThreadPool
 # maximum number of files to download at the same time
 MAX_CONCURRENT_DOWNLOADS = 5
 
-def download_replay(replay_id, store_path=None):
+def download_replay(replay_id, store_path=None, num_files=-1):
     """
     download a replay from the replay server given it's id
     """
@@ -24,7 +24,11 @@ def download_replay(replay_id, store_path=None):
     index = 0
     fileLink = 'http://wt-game-replays.warthunder.com/{}/{:04d}.wrpl'
 
+
     while r := requests.get(fileLink.format(replay_id, index)):
+        if index == num_files:
+            break
+
         print("downloading part %d" % (index + 1))
         if r.status_code == 404:
             break
