@@ -7,7 +7,7 @@ from multiprocessing.pool import ThreadPool
 # maximum number of files to download at the same time
 MAX_CONCURRENT_DOWNLOADS = 5
 
-def download_replay(replay_id, store_path=os.getcwd()):
+def download_replay(replay_id, store_path=None):
     """
     download a replay from the replay server given it's id
     """
@@ -15,10 +15,11 @@ def download_replay(replay_id, store_path=os.getcwd()):
     # get the hex id in correct format
     replay_id = _get_hex_id(replay_id)
 
-    replay_path = os.path.join(store_path, replay_id)
+    if not store_path:
+        store_path = os.path.join(os.getcwd(), replay_id)
 
     # create the folder
-    os.mkdir(replay_path)
+    os.mkdir(store_path)
 
     index = 0
     fileLink = 'http://wt-game-replays.warthunder.com/{}/{:04d}.wrpl'
@@ -28,7 +29,7 @@ def download_replay(replay_id, store_path=os.getcwd()):
         if r.status_code == 404:
             break
 
-        path = os.path.join(replay_path, f"{index:04d}.wrpl")
+        path = os.path.join(store_path, f"{index:04d}.wrpl")
         with open(path, 'wb') as f:
             f.write(r.content)
 
