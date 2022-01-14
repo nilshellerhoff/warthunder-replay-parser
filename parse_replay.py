@@ -21,10 +21,18 @@ def parse_replay(folder):
     players2 = []
 
     for pid in set([p["player_id"] for p in players]):
-        vehicles = list(set([p["vehicle"] for p in players if p["player_id"] == pid]))
+        vehicles = []
+        for v in list(set([p["vehicle"] for p in players if p["player_id"] == pid])):
+            vehicles.append(
+                {
+                    "vehicle": v,
+                    "num_appearances": len([p for p in players if p["player_id"] == pid and p["vehicle"] == v])
+                }
+            )
         players2.append({
             "player_id" : pid,
-            "vehicles": vehicles
+            "vehicles": vehicles,
+            "num_appearances": len([p for p in players if p["player_id"] == pid])
         })
 
     data = _get_metadata(folder)
