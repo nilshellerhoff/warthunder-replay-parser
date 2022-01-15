@@ -81,7 +81,7 @@ def _get_economy(soup):
     }
 
     economy_head = soup.find("h3", text="Modifications and economy")
-    economy_table = economy_head.find_next_sibling()
+    economy_table = economy_head.find_next_sibling("div", {"class" : "specs_info"})
 
     # get the repair costs
     for mode in ["AB", "RB", "SB"]:
